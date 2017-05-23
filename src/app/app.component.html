@@ -2,6 +2,14 @@
   {{title}}
 </h1>
 <div *ngFor="let item of items | async">
-  {{ item.title }}
+  {{ item.title }} <input [(ngModel)]="item.title" type="text" />
+  <button (click)="update(item)">Update</button>
+  <button (click)="remove(item)">Remove</button>
+  <button (click)="select(item)">Select</button>
 </div>
+<div>
+  <input #newItem type="text" placeholder="new item">
+  <button (click)="add(newItem)" >Add item</button>
+</div>
+<selected-item (update)="update($event)" [item]="selectedItem | async"></selected-item>
 
